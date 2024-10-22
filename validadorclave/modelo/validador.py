@@ -68,7 +68,15 @@ class ReglaValidacionGanimedes(ReglaValidacion):
             super().__init__(longitud_esperada=6)
 
         def contiene_calisto(self, clave: str) -> bool:
-            pass
+            clave_tempo: str = clave.lower()
+            palabra: str = "calisto" 
+            clave_tempo.find()
+ 
 
-    
+        def es_valida(self, clave: str) -> bool:
+            if not self._validar_longuitud(clave):
+                raise NoCumpleLongitudMinimaError("La clave debe tener al menos 6 caracteres")
+
+            
+        
         
