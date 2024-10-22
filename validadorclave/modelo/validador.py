@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from validadorclave.modelo.errores import NoCumpleLongitudMinimaError, NoTieneCaracterEspecialError, NoTieneLetraMayusculaError, NoTieneLetraMinusculaError, NoTieneNumeroError, 
+from validadorclave.modelo.errores import NoCumpleLongitudMinimaError, NoTieneCaracterEspecialError, NoTieneLetraMayusculaError, NoTieneLetraMinusculaError, NoTieneNumeroError, NoTienePalabraSecretaError, 
 
 class ReglaValidacion(ABC):
     def __init__(self, longitud_esperada: int):
@@ -71,12 +71,44 @@ class ReglaValidacionGanimedes(ReglaValidacion):
             clave_tempo: str = clave.lower()
             palabra: str = "calisto" 
             clave_tempo.find()
- 
+            indice_calisto: int = 0 
+            while (indice_caliso + len(palabra)) <= len(clave):
+                indice_caliso = clave_tempo.find(palabra, indice_calisto)
+
+                if indice_calisto >= 0:
+                    pi = indice_caliso
+                    pf = indice_caliso
+                    palabra_original = clave[pi:pf]
+
+                    contador_mayusculas = 0 
+                    for letra in palabra_original:
+                        if letra.isupper():
+                            contador_mayusculas += 1 
+
+                    if 2 <= contador_mayusculas < len(palabra):
+                        return True 
+                    
+                    else:
+                        indice_caliso += len(palabra)
+                
+                else:
+                    return False 
+            
+            return False 
+
+
 
         def es_valida(self, clave: str) -> bool:
             if not self._validar_longuitud(clave):
                 raise NoCumpleLongitudMinimaError("La clave debe tener al menos 6 caracteres")
 
+            if not self._contiene_numero(clave):
+                raise NoTieneNumeroError("La clave debe tener al menos un numero")
+
+            if not self.contiene_calisto(clave):
+                raise NoTienePalabraSecretaError("")        
             
+            return True 
         
-        
+class Validador():
+    pass
